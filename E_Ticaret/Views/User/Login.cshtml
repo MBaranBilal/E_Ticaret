@@ -23,7 +23,7 @@
         }
 
         .login-box {
-            background: rgba(255, 255, 255, 0.9); /* hafif şeffaflık */
+            background: rgba(91, 201, 96, 0.8); /* hafif şeffaflık */
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
@@ -61,6 +61,12 @@
             {
                 <div class="alert alert-danger">@ViewBag.Error</div>
             }
+
+            <div class="form-check mb-3">
+                <input asp-for="IsAdminLogin" class="form-check-input" type="checkbox" />
+                <label asp-for="IsAdminLogin" class="form-check-label">Admin olarak giriş yap</label>
+            </div>
+
 
             <button type="submit" class="btn btn-dark w-100">Giriş Yap</button>
         </form>

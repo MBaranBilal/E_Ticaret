@@ -11,5 +11,7 @@ namespace E_Ticaret.ViewModels
 		[Required(ErrorMessage = "Şifre zorunludur")]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
+
+		public bool IsAdminLogin { get; set; }
 	}
 }

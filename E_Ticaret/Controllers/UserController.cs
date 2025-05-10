@@ -39,8 +39,21 @@ namespace E_Ticaret.Controllers
 				//burada kullanıcıyı bulduysak session başlatacağız ve tarayıcı açık olduğu sürece sunucuda verileri geçici olarak tutacak
 				HttpContext.Session.SetInt32("UserId",user.UserId);
 				HttpContext.Session.SetString("UserName",user.Name);
+				HttpContext.Session.SetString("UserRole", user.Role == true ? "Admin" : "User");
 
-				return RedirectToAction("Index","HomePage");
+				if(user.Role == true && model.IsAdminLogin)
+				{
+                    return RedirectToAction("AdminPage", "Admin");
+                }
+				else if (user.Role != true && model.IsAdminLogin)
+				{
+					ViewBag.Error = "Bu hesaba admin yetkisi tanımlı değil.";
+					return View(model);
+				}
+				else
+				{
+                    return RedirectToAction("Index", "HomePage");
+                }
 			}
 
 			ViewBag.Error = "Email veya şifre hatalı.";
