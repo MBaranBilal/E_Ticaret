@@ -12,6 +12,7 @@ builder.Services.AddDbContext<ETicaretDbContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddDistributedMemoryCache();
+builder.Services.AddHttpContextAccessor();
 
 
 

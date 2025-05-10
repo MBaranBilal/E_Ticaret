@@ -1,5 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Extensions;
+@model E_Ticaret.ViewModels.DashboardViewModel
+@inject IHttpContextAccessor HttpContextAccessor
 
 @{
     Layout = null;
@@ -107,7 +109,7 @@
                     <!-- Logo Header -->
                     <div class="logo-header" data-background-color="dark">
                         <a href="index.html" class="logo">
-                            <img src=@Url.Content("kaiadmin-lite-1.2.0/assets/img/kaiadmin/logo_light.svg")
+                            <img src=@Url.Content("~/kaiadmin-lite-1.2.0/assets/img/kaiadmin/logo_light.svg")
                                  alt="navbar brand"
                                  class="navbar-brand"
                                  height="20" />
@@ -129,7 +131,9 @@
                 <!-- Navbar Header -->
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
-
+                        <div class="container-fluid px-4 mt-3">
+                            <h3 class="fw-bold">Dashboard</h3>
+                        </div>
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li class="nav-item topbar-user dropdown hidden-caret">
                                 <a class="dropdown-toggle profile-pic"
@@ -137,24 +141,25 @@
                                    href="#"
                                    aria-expanded="false">                                   
                                     <span class="profile-username">
-                                        <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">xxxx</span>
+                                        <span class="op-7">Merhaba,</span>
+                                        <span class="fw-bold">@HttpContextAccessor.HttpContext.Session.GetString("UserName")</span>
+
                                     </span>
+
                                 </a>                  
                             </li>
                         </ul>
                     </div>
                 </nav>
 
+             
             <!-- End Navbar -->
         </div>
 
         <div class="container">
             <div class="page-inner">
                 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
-                    <div>
-                        <h3 class="fw-bold mb-3">Dashboard</h3>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
@@ -168,8 +173,8 @@
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
                                         <div class="numbers">
-                                            <p class="card-category">Visitors</p>
-                                            <h4 class="card-title">1,294</h4>
+                                            <p class="card-category">Kullanıcı Sayısı</p>
+                                                <h4 class="card-title">@Model.TotalUsers</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +192,8 @@
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
                                         <div class="numbers">
-                                            <p class="card-category">Subscribers</p>
-                                            <h4 class="card-title">1303</h4>
+                                            <p class="card-category">Admin Sayısı</p>
+                                                <h4 class="card-title">@Model.TotalAdmins</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -206,8 +211,8 @@
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
                                         <div class="numbers">
-                                            <p class="card-category">Sales</p>
-                                            <h4 class="card-title">$ 1,345</h4>
+                                            <p class="card-category">Satışlar</p>
+                                                <h4 class="card-title">@Model.TotalSalesAmount ₺</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -225,8 +230,8 @@
                                     </div>
                                     <div class="col col-stats ms-3 ms-sm-0">
                                         <div class="numbers">
-                                            <p class="card-category">Order</p>
-                                            <h4 class="card-title">576</h4>
+                                            <p class="card-category">Sipariş Sayısı</p>
+                                                <h4 class="card-title">@Model.TotalOrders</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +244,7 @@
                         <div class="card card-round">
                             <div class="card-body">
                                 <div class="card-head-row card-tools-still-right">
-                                    <div class="card-title">New Customers</div>
+                                    <div class="card-title">Kullanıcılar</div>
                                     <div class="card-tools">
                                         <div class="dropdown">
                                             <button class="btn btn-icon btn-clean me-0"
@@ -250,112 +255,40 @@
                                                     aria-expanded="false">
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </button>
-                                            <div class="dropdown-menu"
-                                                 aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                            </div>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addUserModal">Yeni Kullanıcı Ekle</a>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-list py-4">
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <img src="assets/img/jm_denis.jpg"
-                                                 alt="..."
-                                                 class="avatar-img rounded-circle" />
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Jimmy Denis</div>
-                                            <div class="status">Graphic Designer</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                    </div>
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <span class="avatar-title rounded-circle border border-white">CF</span>
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Chandra Felix</div>
-                                            <div class="status">Sales Promotion</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                    </div>
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <img src="assets/img/talha.jpg"
-                                                 alt="..."
-                                                 class="avatar-img rounded-circle" />
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Talha</div>
-                                            <div class="status">Front End Designer</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                    </div>
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <img src="assets/img/chadengle.jpg"
-                                                 alt="..."
-                                                 class="avatar-img rounded-circle" />
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Chad</div>
-                                            <div class="status">CEO Zeleaf</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                    </div>
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <span class="avatar-title rounded-circle border border-white bg-primary">H</span>
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Hizrian</div>
-                                            <div class="status">Web Designer</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                    </div>
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <span class="avatar-title rounded-circle border border-white bg-secondary">F</span>
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">Farrah</div>
-                                            <div class="status">Marketing</div>
-                                        </div>
-                                        <button class="btn btn-icon btn-link op-8 me-1">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
-                                        <button class="btn btn-icon btn-link btn-danger op-8">
-                                            <i class="fas fa-ban"></i>
-                                        </button>
-                                    </div>
+                                        @foreach (var user in Model.Users)
+                                        {
+                                            <div class="item-list">
+                                                <div class="avatar">
+                                                    <span class="avatar-title rounded-circle border border-white @(user.Role == true ? "bg-success" : "bg-secondary")">
+                                                        @user.Name[0]
+                                                    </span>
+                                                </div>
+                                                <div class="info-user ms-3">
+                                                    <div class="username">@user.Name @user.Surname</div>
+                                                    <div class="status">@user.Email</div>
+                                                </div>
+                                                <button type="button"
+                                                        class="btn btn-icon btn-link btn-primary op-8 me-1"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#editUserModal"
+                                                        onclick="populateUserModal('@user.UserId', '@user.Name', '@user.Surname', '@user.Email', '@user.Password', '@user.Phone', @user.Role.ToString().ToLower())">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
+
+                                                <a href="/User/Delete/@user.UserId" class="btn btn-icon btn-link btn-danger op-8">
+                                                    <i class="fas fa-ban"></i>
+                                                </a>
+
+                                            </div>
+                                        }
+
                                 </div>
                             </div>
                         </div>
@@ -364,7 +297,7 @@
                         <div class="card card-round">
                             <div class="card-header">
                                 <div class="card-head-row card-tools-still-right">
-                                    <div class="card-title">Transaction History</div>
+                                    <div class="card-title">Ürünler</div>
                                     <div class="card-tools">
                                         <div class="dropdown">
                                             <button class="btn btn-icon btn-clean me-0"
@@ -377,9 +310,9 @@
                                             </button>
                                             <div class="dropdown-menu"
                                                  aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                    <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#addProductModal">Yeni Ürün Ekle</a>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -389,107 +322,36 @@
                                 <div class="table-responsive">
                                     <!-- Projects table -->
                                     <table class="table align-items-center mb-0">
-                                        <thead class="thead-light">
-                                            <tr>
-                                                <th scope="col">Payment Number</th>
-                                                <th scope="col" class="text-end">Date & Time</th>
-                                                <th scope="col" class="text-end">Amount</th>
-                                                <th scope="col" class="text-end">Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">
-                                                    <button class="btn btn-icon btn-round btn-success btn-sm me-2">
-                                                        <i class="fa fa-check"></i>
-                                                    </button>
-                                                    Payment from #10231
-                                                </th>
-                                                <td class="text-end">Mar 19, 2020, 2.45pm</td>
-                                                <td class="text-end">$250.00</td>
-                                                <td class="text-end">
-                                                    <span class="badge badge-success">Completed</span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th scope="col">Fotoğraf</th>
+                                                    <th scope="col">Ürün Adı</th>
+                                                    <th scope="col" class="text-end">Fiyat</th>
+                                                    <th scope="col" class="text-end">Açıklama</th>
+                                                    <th scope="col" class="text-end">Kategori</th>
+                                                    <th scope="col" class="text-end">İşlem</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var product in Model.Products)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <img src="@product.Image" width="50" height="50" style="border-radius: 5px;" />
+                                                        </td>
+                                                        <td>@product.ProductName</td>
+                                                        <td class="text-end">@product.Price₺</td>
+                                                        <td class="text-end">@product.Description</td>
+                                                        <td class="text-end">@product.Category?.CategoryName</td>
+                                                        <td class="text-end">
+                                                            <a href="/Product/Edit/@product.ProductId" class="btn btn-sm btn-primary">Düzenle</a>
+                                                            <a href="/Product/Delete/@product.ProductId" class="btn btn-sm btn-danger">Sil</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+
+                                               
                                     </table>
                                 </div>
                             </div>
@@ -527,6 +389,148 @@
             </div>
         </footer>
     </div>
+
+        <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post" action="/Product/Create">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addProductModalLabel">Yeni Ürün Ekle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label>Ürün Adı</label>
+                                <input type="text" name="ProductName" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label>Açıklama</label>
+                                <textarea name="Description" class="form-control"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label>Fiyat</label>
+                                <input type="number" name="Price" step="0.01" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label>Resim Linki</label>
+                                <input type="text" name="Image" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Kategori</label>
+                                <select name="CategoryId" class="form-control" required>
+                                    <option value="" disabled selected>Kategori seçin</option>
+                                    @foreach (var kategori in ViewBag.Categories as List<SelectListItem>)
+                                    {
+                                        <option value="@kategori.Value">@kategori.Text</option>
+                                    }
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post" action="/User/Edit">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editUserModalLabel">Kullanıcıyı Düzenle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="UserId" id="editUserId" />
+
+                            <div class="mb-3">
+                                <label>Ad</label>
+                                <input type="text" name="Name" class="form-control" id="editName" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Soyad</label>
+                                <input type="text" name="Surname" class="form-control" id="editSurname" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input type="email" name="Email" class="form-control" id="editEmail" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Şifre</label>
+                                <input type="text" name="Password" class="form-control" id="editPassword" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Telefon</label>
+                                <input type="text" name="Phone" class="form-control" id="editPhone" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Rol (Admin için işaretli)</label>
+                                <input type="hidden" name="Role" value="false" />
+                                <input type="checkbox" name="Role" id="editRole" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kullanıcı Ekle Modal -->
+        <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="post" action="/User/Create">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Yeni Kullanıcı Ekle</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label>Ad</label>
+                                <input name="Name" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label>Soyad</label>
+                                <input name="Surname" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label>Email</label>
+                                <input name="Email" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label>Telefon</label>
+                                <input name="Phone" class="form-control" />
+                            </div>
+                            <div class="mb-3">
+                                <label>Şifre</label>
+                                <input name="Password" type="password" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label>Rol</label>
+                                <select name="Role" class="form-control">
+                                    <option value="false">Kullanıcı</option>
+                                    <option value="true">Admin</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
 
     <!-- Custom template | don't include it in your project! -->
     <div class="custom-template">
@@ -657,6 +661,20 @@
     </div>
     <!-- End Custom template -->
     </div>
+
+
+    <script>
+        function populateUserModal(userId, name, surname, email, password, phone, role) {
+            document.getElementById('editUserId').value = userId;
+            document.getElementById('editName').value = name;
+            document.getElementById('editSurname').value = surname;
+            document.getElementById('editEmail').value = email;
+            document.getElementById('editPassword').value = password;
+            document.getElementById('editPhone').value = phone;
+            document.getElementById('editRole').checked = role === 'true';
+        }
+    </script>
+
     <!--   Core JS Files   -->
     <script src=@Url.Content("kaiadmin-lite-1.2.0/assets/js/core/jquery-3.7.1.min.js")></script>
     <script src=@Url.Content("kaiadmin-lite-1.2.0/assets/js/core/popper.min.js")></script>
@@ -771,6 +789,9 @@
                 time: 1000,
             });
         });</script>
+
+ 
+
 
 
 </body>

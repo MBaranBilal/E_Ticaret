@@ -65,5 +65,78 @@ namespace E_Ticaret.Controllers
 			HttpContext.Session.Clear();
 			return RedirectToAction("Login");
 		}
-	}
+
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Users.Add(user);
+                context.SaveChanges();
+                return RedirectToAction("AdminPage", "Admin");
+            }
+            return View(user);
+        }
+
+
+        // ✅ Kullanıcı Silme Metodu
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var user = context.Users.FirstOrDefault(u => u.UserId == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            context.Users.Remove(user);
+            context.SaveChanges();
+
+            return RedirectToAction("AdminPage", "Admin");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var user = context.Users.FirstOrDefault(u => u.UserId == id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = context.Users.FirstOrDefault(u => u.UserId == model.UserId);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                user.Name = model.Name;
+                user.Surname = model.Surname;
+                user.Email = model.Email;
+                user.Password = model.Password;
+                user.Phone = model.Phone;
+                user.Role = model.Role;
+
+                context.SaveChanges();
+                return RedirectToAction("AdminPage", "Admin");
+            }
+
+            return View(model);
+        }
+
+    }
 }
