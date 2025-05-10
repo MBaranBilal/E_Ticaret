@@ -4,9 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - E_Ticaret</title>
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/E_Ticaret.styles.css" asp-append-version="true" />
+
+    @* Admin panelden gelen ekstra stil dosyaları için *@
+    @RenderSection("VendorStyles", required: false)
 </head>
 <body>
     <header>
@@ -30,6 +34,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -41,9 +46,15 @@
             &copy; 2025 - E_Ticaret - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @* Admin panelden gelen script'ler için: *@
+    @RenderSection("VendorScripts", required: false)
+    @RenderSection("PageScripts", required: false)
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
