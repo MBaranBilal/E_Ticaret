@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarsFurni">
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item active"><a class="nav-link" href="/HomePage/Index">Ana Sayfa</a></li>
-                    <li><a class="nav-link" href="#">Alışveriş</a></li>
+                    <li><a class="nav-link" href="/Shop/Shop">Alışveriş</a></li>
                     <li><a class="nav-link" href="#">Hakkımızda</a></li>
                     <li><a class="nav-link" href="#">Servisler</a></li>
                     <li><a class="nav-link" href="#">Blog</a></li>
@@ -88,7 +88,7 @@
                 @foreach(var item in Model)
                 {
                     <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                        <a class="product-item" href="#">
+                        <a class="product-item" href="/Cart/AddToCart/@item.ProductId">
                             <img src="@item.Image" class="img-fluid product-thumbnail" />
                             <h3 class="product-title">@item.ProductName</h3>
                             <strong class="product-price">@item.Price TL</strong>
