@@ -36,14 +36,10 @@
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item active"><a class="nav-link" href="/HomePage/Index">Ana Sayfa</a></li>
                     <li><a class="nav-link" href="/Shop/Shop">Alışveriş</a></li>
-                    <li><a class="nav-link" href="#">Hakkımızda</a></li>
-                    <li><a class="nav-link" href="#">Servisler</a></li>
-                    <li><a class="nav-link" href="#">Blog</a></li>
-                    <li><a class="nav-link" href="#">İletişim</a></li>
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                    <li><a class="nav-link" href="#"><img src="@Url.Content("~/furni-1.0.0.0/images/user.svg")" /></a></li>
+                    <li><a class="nav-link" href="/User/Logout"><img src="@Url.Content("~/furni-1.0.0.0/images/user.svg")" /></a></li>
                     <li><a class="nav-link" href="/Cart/Cart"><img src="@Url.Content("~/furni-1.0.0.0/images/cart.svg")" /></a></li>
                 </ul>
             </div>
@@ -59,8 +55,8 @@
                         <h1>Modern <span class="d-block"> İç Tasarım Dizaynı</span></h1>
                         <p class="mb-4">Furni ile keşfe çıkın !</p>
                         <p>
-                            <a href="#" class="btn btn-secondary me-2">Alışveriş Yap</a>
-                            <a href="#" class="btn btn-white-outline">Keşfet</a>
+                            <a href="/Cart/Cart" class="btn btn-secondary me-2">Sepete Git</a>
+                            <a href="/Shop/Shop" class="btn btn-white-outline">Keşfet</a>
                         </p>
                     </div>
                 </div>
@@ -79,8 +75,12 @@
             <div class="row">
                 <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
                     <h2 class="mb-4 section-title">Mükemmel malzemelerle hazırlandı.</h2>
-                    <p class="mb-4">Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-                    <p><a href="#" class="btn">Keşfet</a></p>
+                    <p class="mb-4">
+                        Hayallerinizdeki Evi Keşfedin!
+
+                        Tarzınıza ve ihtiyacınıza uygun, birbirinden şık ve kaliteli mobilyalar tek tıkla kapınızda! Geniş ürün yelpazemizle oturma odasından yatak odasına, yemek alanından çalışma köşesine kadar evinizin her köşesini güzelleştirin. 
+                    </p>
+                    <p><a href="/Shop/Shop" class="btn">Keşfet</a></p>
                 </div>
 
 
@@ -140,36 +140,7 @@
         <div class="container relative">
             <div class="sofa-img">
                 <img src="@Url.Content("~/furni-1.0.0.0/images/sofa.png")" class="img-fluid" />
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="subscription-form">
-                        <h3 class="d-flex align-items-center">
-                            <span class="me-1">
-                                <img src="@Url.Content("~/furni-1.0.0.0/images/envelope-outline.svg")" class="img-fluid" />
-                            </span>
-                            <span>Subscribe to Newsletter</span>
-                        </h3>
-                        <form action="#" class="row g-3">
-                            <div class="col-auto">
-                                <input type="text" class="form-control" placeholder="Enter your name" />
-                            </div>
-                            <div class="col-auto">
-                                <input type="email" class="form-control" placeholder="Enter your email" />
-                            </div>
-                            <div class="col-auto">
-                                <button class="btn btn-primary">
-                                    <span class="fa fa-paper-plane"></span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="border-top copyright pt-4 text-center">
-                <p>&copy; @DateTime.Now.Year. Designed by <a href="https://untree.co">Untree.co</a></p>
-            </div>
-        </div>
+            </div
     </footer>
 
     <!-- JS Files -->

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using E_Ticaret.ViewModels;
 using E_Ticaret.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Ticaret.Controllers
 {
@@ -65,5 +66,39 @@ namespace E_Ticaret.Controllers
 			HttpContext.Session.Clear();
 			return RedirectToAction("Login");
 		}
+
+		[HttpGet]
+		public IActionResult Register()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult Register(UserRegisterViewModel model)
+		{
+			if (!ModelState.IsValid)
+				return View(model);
+
+			var existingUser = context.Users.FirstOrDefault(u => u.Email == model.Email);
+			if (existingUser != null)
+			{
+				ViewBag.Error = "Bu email adresi zaten kullanılıyor.";
+				return View(model);
+			}
+
+			var newUser = new User
+			{
+				Name = model.Name,
+				Email = model.Email,
+				Password = model.Password, 
+				Role = model.Role
+			};
+
+			context.Users.Add(newUser);
+			context.SaveChanges();
+
+			return RedirectToAction("Login");
+		}
+
 	}
 }
