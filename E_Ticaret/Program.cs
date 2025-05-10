@@ -11,6 +11,8 @@ builder.Services.AddDbContext<ETicaretDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
+builder.Services.AddDistributedMemoryCache();
+
 
 
 var app = builder.Build();
